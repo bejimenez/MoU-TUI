@@ -119,7 +119,7 @@ running python main.py opens up the textual "hello Ulan" app; pressing q will qu
 *Note any known issues or half-finished features*
 
 **Next Steps:**
-*Outline what you plan to tackle next*
+- very basic character creation and ability to "play" the game. Player should be able to create a character with a desired name and click "play" to enter the gameplay screen. 
 
 **Questions/Ideas:**
 *Jot down any thoughts, questions, or design decisions to revisit*
