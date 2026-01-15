@@ -110,10 +110,10 @@ Basic textual "hello Ulan" app running.
 **Last Session Date:** *[Update this each time you work on the project]*
 
 **What I Was Working On:**
-*Describe what you were doing in your last session*
+Creating a basic running TUI app to confirm the environment is setup and working correctly.
 
 **What Works:**
-*List the features that are currently functional*
+running python main.py opens up the textual "hello Ulan" app; pressing q will quit.
 
 **What's Broken/Incomplete:**
 *Note any known issues or half-finished features*
