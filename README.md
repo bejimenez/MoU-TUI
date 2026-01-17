@@ -60,15 +60,15 @@ ulan-rpg/
 ## Current Features
 
 ### Implemented
-- [ ] Basic Textual app structure
-- [ ] Main menu screen
+- [x] Basic Textual app structure
+- [x] Main menu screen
 - [ ] Character creation
 - [ ] Combat system
 - [ ] Inventory management
 - [ ] Save/Load system
 
 ### In Progress
-Refactor the main menu and character creation screens, main.py becomes the app shell that just loads the first screen (currently just the main menu)
+Update the character creation screen with tabs to prepare for more interesting mechanics
 
 ---
 
@@ -110,16 +110,13 @@ Refactor the main menu and character creation screens, main.py becomes the app s
 **Last Session Date:** *[Update this each time you work on the project]*
 
 **What I Was Working On:**
-Refactoring the screens logic
+building the character creation system
 
 **What Works:**
 
 
 **What's Broken/Incomplete:**
-app doesn't load, module not found error: Traceback (most recent call last):
-  File "/home/bejimmy/projects/PYTHON/MoU-TUI/main.py", line 9, in <module>
-    from src.ui.screens.main_menu import MainMenuScreen
-ModuleNotFoundError: No module named 'src.ui.screens.main_menu'; 'src.ui.screens' is not a package
+
 
 **Next Steps:**
 - continue character creation screen with tabs for assigning attributes and picking background. 
