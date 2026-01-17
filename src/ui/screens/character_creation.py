@@ -264,8 +264,27 @@ class CharacterCreationScreen(Screen):
         """Handle all button presses"""
         button_id = event.button.id
         
-        # Stat adjustment buttons
-        if button_id and "-minus" in button_id:
+        # Fervor buttons (check FIRST before generic stat buttons)
+        if button_id == "fervor-minus":
+            if self.character.divine_fervor > 1:
+                self.character.divine_fervor -= 1
+                self.update_fervor_display()
+        
+        elif button_id == "fervor-plus":
+            if self.character.divine_fervor < 10:
+                self.character.divine_fervor += 1
+                self.update_fervor_display()
+        
+        elif button_id == "fervor-min":
+            self.character.divine_fervor = 1
+            self.update_fervor_display()
+        
+        elif button_id == "fervor-max":
+            self.character.divine_fervor = 10
+            self.update_fervor_display()
+        
+        # Stat adjustment buttons (for D&D attributes only)
+        elif button_id and "-minus" in button_id:
             stat_name = button_id.replace("-minus", "")
             if self.character.can_decrease_stat(stat_name):
                 current = getattr(self.character, stat_name)
@@ -284,25 +303,6 @@ class CharacterCreationScreen(Screen):
         # Randomize button
         elif button_id == "randomize-btn":
             self.randomize_stats()
-        
-        # Fervor buttons
-        elif button_id == "fervor-minus":
-            if self.character.divine_fervor > 1:
-                self.character.divine_fervor -= 1
-                self.update_fervor_display()
-        
-        elif button_id == "fervor-plus":
-            if self.character.divine_fervor < 10:
-                self.character.divine_fervor += 1
-                self.update_fervor_display()
-        
-        elif button_id == "fervor-min":
-            self.character.divine_fervor = 1
-            self.update_fervor_display()
-        
-        elif button_id == "fervor-max":
-            self.character.divine_fervor = 10
-            self.update_fervor_display()
         
         # Navigation buttons
         elif button_id == "cancel-btn":
