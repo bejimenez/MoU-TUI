@@ -1,14 +1,5 @@
 from textual.app import ComposeResult
 from textual.screen import Screen
-from textual.containers import Container, Vertical
-from textual.widgets import Static, Input, Label
-from textual.binding import Binding
-
-# import other screens for navigation
-# from src.ui.screens.game_view import GameViewScreen
-
-from textual.app import ComposeResult
-from textual.screen import Screen
 from textual.containers import Container, Vertical, Horizontal, Center
 from textual.widgets import (
     Static, Input, Label, Button, TabbedContent, TabPane
@@ -116,50 +107,57 @@ class CharacterCreationScreen(Screen):
         Binding("ctrl+n", "next_tab", "Next", show=False),
         Binding("ctrl+p", "prev_tab", "Previous", show=False),
     ]
-
+    
     def __init__(self):
         super().__init__()
         self.character = Character()
     
     def compose(self) -> ComposeResult:
+        """Create the tabbed character creation UI"""
         with Container(id="creation-container"):
-            yield Static("ULAN - Character Creation", id="header")
-
+            yield Static("ULAN - CHARACTER CREATION", id="header")
+            
             with TabbedContent(initial="name-tab"):
+                # TAB 1: Name
                 with TabPane("Name", id="name-tab"):
-                    yield Static("What shall the morals call you?", classes="section-title")
+                    yield Static("What shall the mortals call you?", classes="section-title")
                     yield Input(
                         placeholder="Enter your name...",
                         max_length=30,
                         id="name-input"
                     )
                     yield Static(
-                        "A name is more than just a label; it is the essence of your identity in this world.",
+                        "Your name echoes through the realm. Choose one that\n"
+                        "strikes fear into your enemies and inspires your allies.",
                         classes="flavor-text"
                     )
                 
+                # TAB 2: Attributes
                 with TabPane("Attributes", id="attr-tab"):
-                    yield Static("Distribute your attribute points", classes="section-title")
+                    yield Static("Distribute Your Abilities", classes="section-title")
                     yield Static(id="points-display")
                     yield Center(Button("Randomize Stats", id="randomize-btn", variant="primary"))
-
-                    for stat in ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]:
+                    
+                    # Create stat rows
+                    for stat in ["strength", "dexterity", "constitution", 
+                                "intelligence", "wisdom", "charisma"]:
                         with Horizontal(classes="stat-row"):
                             yield Label(stat.capitalize(), classes="stat-label")
                             yield Button("-", classes=f"stat-button stat-minus", id=f"{stat}-minus")
                             yield Static("8", classes="stat-value", id=f"{stat}-value")
                             yield Button("+", classes=f"stat-button stat-plus", id=f"{stat}-plus")
-                        
+                    
                     yield Static(
                         "Point-Buy System: 27 points total. Stats range from 8-15.\n"
-                        "Higher stats cost more points (13->14 costs 2 points, 14->15 costs 2 points).",
+                        "Higher stats cost more points (13→14 costs 2, 14→15 costs 2).",
                         classes="flavor-text"
                     )
                 
+                # TAB 3: Divine Fervor
                 with TabPane("Divine Fervor", id="fervor-tab"):
-                    yield Static("Choose your character's propensity for Zealotry", classes="section-title")
+                    yield Static("Choose Your Zealotry", classes="section-title")
                     yield Static(id="fervor-display")
-
+                    
                     with Center():
                         with Horizontal():
                             yield Button("<<", classes="fervor-button", id="fervor-min")
@@ -170,23 +168,27 @@ class CharacterCreationScreen(Screen):
                     yield Static(id="fervor-description")
                     yield Static(
                         "Divine Fervor determines how quickly you gain loyalty with gods.\n"
-                        "High Fervor = Rapid devotion and loyalty gain but you may be locked into certain paths due to fanaticism.\n"
-                        "Low Fervor = Slower loyalty gain but more flexibility in choices.",
+                        "High Fervor = Rapid devotion but locked into fewer gods\n"
+                        "Low Fervor = Slow devotion but flexibility with multiple gods",
                         classes="flavor-text"
                     )
                 
+                # TAB 4: Review
                 with TabPane("Review", id="review-tab"):
                     yield Static("Your Character", classes="section-title")
                     yield Static(id="review-content")
                     yield Static(
-                        "Review your choices before embarking on your journey into Ulan.",
+                        "Review your choices. Return to previous tabs to make changes.",
                         classes="flavor-text"
                     )
-                
-            # Navigation Buttons
+            
+            # Navigation buttons at bottom
             with Center(id="navigation"):
-                yield Button("<- Back to Menu", id="cancel-btn", classes="nav-button")
-                yield Button("Begin Journey ->", id="confirm-btn", variant="success", classes="nav-button")
+                with Horizontal():
+                    yield Button("← Back to Menu", id="cancel-btn", classes="nav-button")
+                    yield Button("Begin Journey →", id="confirm-btn", 
+                               variant="success", classes="nav-button")
+    
     def on_mount(self) -> None:
         """Initialize the screen"""
         self.query_one(Input).focus()
