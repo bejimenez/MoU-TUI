@@ -57,7 +57,7 @@ class MainMenuScreen(Screen):
         Binding("q", "quit", "Quit", show=True),
     ]
     
- def compose(self) -> ComposeResult:
+    def compose(self) -> ComposeResult:
         """Create main menu UI"""
         yield Container(
             Static("ULAN", id="title"),

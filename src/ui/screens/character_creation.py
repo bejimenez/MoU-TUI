@@ -5,7 +5,7 @@ from textual.widgets import Static, Input, Label
 from textual.binding import Binding
 
 # import other screens for navigation
-from src.ui.game_view import GameViewScreen
+# from src.ui.screens.game_view import GameViewScreen
 
 class CharacterCreationScreen(Screen):
     """Character creation screen - Phase 1: Name input only"""
