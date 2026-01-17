@@ -68,7 +68,7 @@ ulan-rpg/
 - [ ] Save/Load system
 
 ### In Progress
-Basic textual "hello Ulan" app running.
+Refactor the main menu and character creation screens, main.py becomes the app shell that just loads the first screen (currently just the main menu)
 
 ---
 
@@ -110,19 +110,22 @@ Basic textual "hello Ulan" app running.
 **Last Session Date:** *[Update this each time you work on the project]*
 
 **What I Was Working On:**
-Creating a basic running TUI app to confirm the environment is setup and working correctly.
+Refactoring the screens logic
 
 **What Works:**
-running python main.py opens up the textual "hello Ulan" app; pressing q will quit.
+
 
 **What's Broken/Incomplete:**
-*Note any known issues or half-finished features*
+app doesn't load, module not found error: Traceback (most recent call last):
+  File "/home/bejimmy/projects/PYTHON/MoU-TUI/main.py", line 9, in <module>
+    from src.ui.screens.main_menu import MainMenuScreen
+ModuleNotFoundError: No module named 'src.ui.screens.main_menu'; 'src.ui.screens' is not a package
 
 **Next Steps:**
-- very basic character creation and ability to "play" the game. Player should be able to create a character with a desired name and click "play" to enter the gameplay screen. 
+- continue character creation screen with tabs for assigning attributes and picking background. 
 
 **Questions/Ideas:**
-*Jot down any thoughts, questions, or design decisions to revisit*
+maybe implement a biography section for flavor? (need to consider how to use it in game...)
 
 ---
 
